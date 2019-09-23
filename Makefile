@@ -28,6 +28,10 @@ stan: vendor ## Runs a static analysis with phpstan & psalm
 	vendor/bin/phpstan analyse --configuration=phpstan.neon
 	vendor/bin/psalm
 
+.PHONY: test
+test: vendor
+	vendor/bin/phpunit
+
 vendor: composer.json composer.lock
 	composer validate --strict
 	composer install --no-interaction --no-progress --no-suggest
