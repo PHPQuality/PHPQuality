@@ -1,0 +1,44 @@
+{
+  "name": "phpquality/phpquality",
+  "type": "library",
+  "description": "Provides different metrics to assure quality PHP code.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gert de Pagter",
+      "email": "BackEndTea@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.3",
+    "nikic/php-parser": "^4.2"
+  },
+  "require-dev": {
+    "doctrine/coding-standard": "^6.0",
+    "infection/infection": "^0.14",
+    "localheinz/composer-normalize": "^1.3",
+    "localheinz/phpstan-rules": "^0.12",
+    "phpstan/phpstan": "^0.11",
+    "phpstan/phpstan-deprecation-rules": "^0.11",
+    "phpstan/phpstan-strict-rules": "^0.11",
+    "phpunit/phpunit": "^8.3",
+    "vimeo/psalm": "^3.5"
+  },
+  "config": {
+    "platform": {
+      "php": "7.3.1"
+    },
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "PHPQuality\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PHPQuality\\Test\\": "test/"
+    }
+  }
+}
