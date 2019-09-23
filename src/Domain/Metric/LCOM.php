@@ -10,7 +10,10 @@ use function count;
 use function max;
 use function sprintf;
 
-final class LCOM implements Metric
+/**
+ * @psalm-external-mutation-free
+ */
+final class LCOM implements ClassBased, Metric
 {
     private const CALCULATION = <<<TXT
 Consider a Class C1 with n methods M1, M2, ... Mn.
@@ -26,7 +29,10 @@ LCOM = |P| - |Q| if |P| > |Q|
 LCOM is the number of null intersections - number of nonempty intersections.
 TXT;
 
-    /** @var string */
+    /**
+     * @var string
+     * @psalm-readonly
+     */
     private $className;
 
     /** @var array<array<string>> */
