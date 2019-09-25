@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PHPQuality\Domain\Metric;
 
-use PHPQuality\Domain\Metric;
 use function array_intersect;
 use function count;
 use function max;
@@ -13,7 +12,7 @@ use function sprintf;
 /**
  * @psalm-external-mutation-free
  */
-final class LCOM implements ClassBased, Metric
+final class LCOM extends ClassBasedMetric
 {
     private const CALCULATION = <<<TXT
 Consider a Class C1 with n methods M1, M2, ... Mn.
@@ -29,18 +28,15 @@ LCOM = |P| - |Q| if |P| > |Q|
 LCOM is the number of null intersections - number of nonempty intersections.
 TXT;
 
-    /**
-     * @var string
-     * @psalm-readonly
-     */
-    private $className;
-
     /** @var array<array<string>> */
     private $methods = [];
 
-    public function __construct(string $className)
+    /**
+     * @param array<string> $properties Names of all properties used by the processed method call
+     */
+    public function addMethod(array $properties): void
     {
-        $this->className = $className;
+        $this->methods[] = $properties;
     }
 
     public function calculate(): int
@@ -62,19 +58,6 @@ TXT;
         }
 
         return max($nullIntersections - $nonEmptyIntersections, 0);
-    }
-
-    public function className(): string
-    {
-        return $this->className;
-    }
-
-    /**
-     * @param array<string> $properties
-     */
-    public function addMethod(array $properties): void
-    {
-        $this->methods[] = $properties;
     }
 
     public function name(): string
