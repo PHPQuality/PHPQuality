@@ -1,8 +1,10 @@
 # https://help.github.com/en/categories/automating-your-workflow-with-github-actions
 
-on: [pull_request, push]
-
 name: "Continuous Integration"
+
+on:
+  - pull_request
+  - push
 
 jobs:
   coding-standards:
@@ -23,7 +25,7 @@ jobs:
       - name: "Run localheinz/composer-normalize"
         run: php7.3 $(which composer) normalize --dry-run
 
-      - name: "Run friendsofphp/php-cs-fixer"
+      - name: "Run PHP CodeSniffer"
         run: php7.3 vendor/bin/phpcs
 
   static-code-analysis:
@@ -85,10 +87,10 @@ jobs:
         run: php7.3 $(which composer) install --no-interaction --no-progress --no-suggest
 
       - name: "Dump Xdebug filter with phpunit/phpunit"
-        run: php7.3 vendor/bin/phpunit --configuration=test/Unit/phpunit.xml --dump-xdebug-filter=.build/phpunit/xdebug-filter.php
+        run: php7.3 vendor/bin/phpunit --dump-xdebug-filter=.build/phpunit/xdebug-filter.php
 
       - name: "Collect code coverage with Xdebug and phpunit/phpunit"
-        run: php7.3 vendor/bin/phpunit --configuration=test/Unit/phpunit.xml --coverage-clover=build/logs/clover.xml --prepend=.build/phpunit/xdebug-filter.php
+        run: php7.3 vendor/bin/phpunit --coverage-clover=build/logs/clover.xml --prepend=.build/phpunit/xdebug-filter.php
 
       - name: "Download code coverage uploader for Codecov.io"
         run: curl -s https://codecov.io/bash -o codecov
