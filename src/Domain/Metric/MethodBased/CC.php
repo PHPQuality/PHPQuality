@@ -9,6 +9,9 @@ final class CC extends MethodBasedMetric
     /** @var int */
     private $complexity = 0;
 
+    /**
+     * Should be called whenever a statement that increases the complexity is found
+     */
     public function increaseComplexity(): void
     {
         $this->complexity++;

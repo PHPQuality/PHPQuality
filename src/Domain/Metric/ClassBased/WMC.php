@@ -11,6 +11,10 @@ final class WMC extends ClassBasedMetric
     /** @var int */
     private $wmc = 0;
 
+    /**
+     * @param Metric $metric The used complexity measure for the method.
+     *                       The same complexity measure should be used each time
+     */
     public function addMethod(Metric $metric): void
     {
         $this->wmc += $metric->calculate();

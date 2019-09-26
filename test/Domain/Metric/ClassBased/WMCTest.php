@@ -35,10 +35,8 @@ final class WMCTest extends TestCase
         ];
 
         yield 'one method' => [
-            [
-                new FakeMethodMetric(3)
-            ],
-            3
+            [new FakeMethodMetric(3)],
+            3,
         ];
 
         yield 'multiple methods' => [
@@ -47,7 +45,7 @@ final class WMCTest extends TestCase
                 new FakeMethodMetric(23),
                 new FakeMethodMetric(18),
             ],
-            44
+            44,
         ];
     }
 }
