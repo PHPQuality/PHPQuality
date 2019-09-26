@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PHPQuality\Test\Domain\Metric;
+namespace PHPQuality\Test\Domain\Metric\ClassBased;
 
 use Generator;
-use PHPQuality\Domain\Metric\LCOM;
+use PHPQuality\Domain\Metric\ClassBased\LCOM;
 use PHPUnit\Framework\TestCase;
 
 final class LCOMTest extends TestCase

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PHPQuality\Domain\Metric;
+namespace PHPQuality\Domain\Metric\ClassBased;
 
 use function array_merge;
 use function array_unique;

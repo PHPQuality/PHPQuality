@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PHPQuality\Test\Domain\Metric;
+namespace PHPQuality\Test\Domain\Metric\ClassBased;
 
 use Generator;
-use PHPQuality\Domain\Metric\RFC;
+use PHPQuality\Domain\Metric\ClassBased\RFC;
 use PHPUnit\Framework\TestCase;
 
 final class RFCTest extends TestCase

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PHPQuality\Domain\Metric;
+namespace PHPQuality\Domain\Metric\ClassBased;
 
 use PHPQuality\Domain\Metric;
+use PHPQuality\Domain\Metric\ClassBased;
 
 abstract class ClassBasedMetric implements ClassBased, Metric
 {
