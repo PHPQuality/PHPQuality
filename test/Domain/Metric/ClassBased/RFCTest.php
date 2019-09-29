@@ -15,7 +15,7 @@ final class RFCTest extends TestCase
      *
      * @dataProvider provideRFCCases
      */
-    public function testItCalculatesCorrectRFC(array $callsPerMethod, int $expectedRFC): void
+    public function testItCalculatesCorrectRFC(array $callsPerMethod, float $expectedRFC): void
     {
         $rfc = new RFC('class');
         foreach ($callsPerMethod as $method) {

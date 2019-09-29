@@ -7,6 +7,9 @@ namespace PHPQuality\Domain\Metric\ClassBased;
 use PHPQuality\Domain\Metric;
 use PHPQuality\Domain\Metric\ClassBased;
 
+/**
+ * @psalm-external-mutation-free
+ */
 abstract class ClassBasedMetric implements ClassBased, Metric
 {
     /**

@@ -36,7 +36,7 @@ TXT;
         $this->methodCalls = array_unique(array_merge($this->methodCalls, $calls));
     }
 
-    public function calculate(): int
+    public function calculate(): float
     {
         return count($this->methodCalls);
     }

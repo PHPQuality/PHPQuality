@@ -17,7 +17,7 @@ final class WMCTest extends TestCase
      *
      * @dataProvider provideMethodsAndComplexity
      */
-    public function testItCalculatesCorrectWMC(array $methodMetrics, int $complexity): void
+    public function testItCalculatesCorrectWMC(array $methodMetrics, float $complexity): void
     {
         $wmc = new WMC('className');
 

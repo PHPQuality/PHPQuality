@@ -15,7 +15,7 @@ final class LCOMTest extends TestCase
      *
      * @dataProvider providesLCOMCalculationCases
      */
-    public function testItCalculatesCorrectly(array $propertiesInMethod, int $expected): void
+    public function testItCalculatesCorrectly(array $propertiesInMethod, float $expected): void
     {
         $lcom = new LCOM('foo');
         foreach ($propertiesInMethod as $properties) {

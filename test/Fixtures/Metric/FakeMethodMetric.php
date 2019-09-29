@@ -7,6 +7,9 @@ namespace PHPQuality\Test\Fixtures\Metric;
 use ErrorException;
 use PHPQuality\Domain\Metric;
 
+/**
+ * @psalm-external-mutation-free
+ */
 final class FakeMethodMetric implements Metric
 {
     /** @var int */
@@ -17,7 +20,7 @@ final class FakeMethodMetric implements Metric
         $this->complexity = $complexity;
     }
 
-    public function calculate(): int
+    public function calculate(): float
     {
         return $this->complexity;
     }
