@@ -14,10 +14,13 @@
     <file>test</file>
 
     <!-- Include full Doctrine Coding Standard -->
-    <rule ref="Doctrine"/>
+    <rule ref="Doctrine">
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming" />
+    </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing">
         <properties>
             <property name="spacesCountBeforeColon" value="0"/>
         </properties>
     </rule>
+
 </ruleset>

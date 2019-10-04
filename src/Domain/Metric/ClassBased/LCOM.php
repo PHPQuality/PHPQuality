@@ -39,7 +39,7 @@ TXT;
         $this->methods[] = $properties;
     }
 
-    public function calculate(): int
+    public function calculate(): float
     {
         // P in calculation
         $nullIntersections = 0;

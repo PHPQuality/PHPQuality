@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace PHPQuality\Domain;
 
+/**
+ * @psalm-external-mutation-free
+ */
 interface Metric
 {
-    public function calculate(): int;
+    /**
+     * @psalm-mutation-free
+     */
+    public function calculate(): float;
 
     public function name(): string;
 

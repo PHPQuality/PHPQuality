@@ -6,17 +6,24 @@ namespace PHPQuality\Domain\Metric\ClassBased;
 
 use PHPQuality\Domain\Metric;
 
+/**
+ * @psalm-external-mutation-free
+ */
 final class WMC extends ClassBasedMetric
 {
-    /** @var int */
+    /** @var float */
     private $wmc = 0;
 
+    /**
+     * @param Metric $metric The used complexity measure for the method.
+     *                       The same complexity measure should be used each time
+     */
     public function addMethod(Metric $metric): void
     {
         $this->wmc += $metric->calculate();
     }
 
-    public function calculate(): int
+    public function calculate(): float
     {
         return $this->wmc;
     }

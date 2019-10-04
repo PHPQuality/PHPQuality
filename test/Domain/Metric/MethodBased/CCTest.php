@@ -13,7 +13,7 @@ final class CCTest extends TestCase
     /**
      * @dataProvider provideCounts
      */
-    public function testItCalculatesTheCorrectComplexity(int $count): void
+    public function testItCalculatesTheCorrectComplexity(float $count): void
     {
         $cc = new CC('className', 'methodNAme');
         for ($i = 0; $i < $count; $i++) {

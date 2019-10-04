@@ -7,6 +7,9 @@ namespace PHPQuality\Domain\Metric\MethodBased;
 use PHPQuality\Domain\Metric;
 use PHPQuality\Domain\Metric\MethodBased;
 
+/**
+ * @psalm-external-mutation-free
+ */
 abstract class MethodBasedMetric implements MethodBased, Metric
 {
     /** @var string */
