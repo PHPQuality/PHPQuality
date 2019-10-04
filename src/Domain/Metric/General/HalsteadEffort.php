@@ -5,31 +5,30 @@ declare(strict_types=1);
 namespace PHPQuality\Domain\Metric\General;
 
 use PHPQuality\Domain\Metric\Exception\UnableToCalculate;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-external-mutation-free
  */
 trait HalsteadEffort
 {
-    /** @var int  */
-    private $difficulty = 0;
-    /** @var int  */
-    private $volume = 0;
+    /** @var float|null  */
+    private $difficulty;
+    /** @var float|null  */
+    private $volume;
 
     final public function setDifficultyAndVolume(float $difficulty, float $volume): void
     {
+        Assert::allGreaterThan([$difficulty, $volume], 0);
+
         $this->difficulty = $difficulty;
         $this->volume     = $volume;
     }
 
     final public function calculate(): float
     {
-        if ($this->difficulty === 0) {
-            throw UnableToCalculate::unknownDifficulty();
-        }
-
-        if ($this->volume === 0) {
-            throw UnableToCalculate::unknownVolume();
+        if ($this->difficulty === null || $this->volume === null) {
+            throw UnableToCalculate::missingData('difficulty', 'volume');
         }
 
         return $this->difficulty * $this->volume;

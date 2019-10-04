@@ -5,24 +5,26 @@ declare(strict_types=1);
 namespace PHPQuality\Domain\Metric\General;
 
 use PHPQuality\Domain\Metric\Exception\UnableToCalculate;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-external-mutation-free
  */
 trait HalsteadTime
 {
-    /** @var int  */
-    private $effort = 0;
+    /** @var float|null  */
+    private $effort;
 
-    final public function setEffort(int $effort): void
+    final public function setEffort(float $effort): void
     {
+        Assert::greaterThan($effort, 0);
         $this->effort = $effort;
     }
 
     final public function calculate(): float
     {
-        if ($this->effort === 0) {
-            throw UnableToCalculate::unknownEffort();
+        if ($this->effort === null) {
+            throw UnableToCalculate::missingData('effort');
         }
 
         return $this->effort / 18;

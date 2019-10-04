@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPQuality\Domain\Metric\General;
 
 use PHPQuality\Domain\Metric\Exception\UnableToCalculate;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-external-mutation-free
@@ -12,17 +13,18 @@ use PHPQuality\Domain\Metric\Exception\UnableToCalculate;
 trait HalsteadBugs
 {
     /** @var float|null */
-    private $effort = null;
+    private $effort;
 
     final public function setEffort(float $effort): void
     {
+        Assert::greaterThan($effort, 0);
         $this->effort = $effort;
     }
 
     final public function calculate(): float
     {
         if ($this->effort === null) {
-            throw UnableToCalculate::unknownEffort();
+            throw UnableToCalculate::missingData('effort');
         }
 
         return ($this->effort ** (2 / 3)) /3000;

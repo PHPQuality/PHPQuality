@@ -5,21 +5,23 @@ declare(strict_types=1);
 namespace PHPQuality\Domain\Metric\General;
 
 use PHPQuality\Domain\Metric\Exception\UnableToCalculate;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-external-mutation-free
  */
 trait HalsteadDifficulty
 {
-    /** @var int  */
-    private $distinctOperators = 0;
-    /** @var int  */
-    private $distinctOperands = 0;
-    /** @var int  */
-    private $totalOperands = 0;
+    /** @var int|null */
+    private $distinctOperators;
+    /** @var int|null */
+    private $distinctOperands;
+    /** @var int|null */
+    private $totalOperands;
 
     final public function setData(int $distinctOperators, int $distinctOperands, int $totalOperands): void
     {
+        Assert::allGreaterThan([$distinctOperators, $distinctOperands, $totalOperands], 0);
         $this->distinctOperators = $distinctOperators;
         $this->distinctOperands  = $distinctOperands;
         $this->totalOperands     = $totalOperands;
@@ -27,8 +29,8 @@ trait HalsteadDifficulty
 
     final public function calculate(): float
     {
-        if ($this->distinctOperands === 0) {
-            throw UnableToCalculate::unkownOperands();
+        if ($this->distinctOperators === null || $this->distinctOperands === null || $this->totalOperands === null) {
+            throw UnableToCalculate::missingData('distinctOperators', 'distinctOperands', 'totalOperands');
         }
 
         return ($this->distinctOperators / 2) * ($this->totalOperands / $this->distinctOperands);
